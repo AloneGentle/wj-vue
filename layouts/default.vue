@@ -4,8 +4,8 @@
     <header id="header">
       <section class="container">
         <h1 id="logo">
-          <a href="/" title="包教会">
-            <img src="~/assets/img/logo.png" width="100%" alt="包教会" />
+          <a href="/" title="语言学习">
+            <img src="~/assets/img/logo.png" width="100%" alt="语言学习" />
           </a>
         </h1>
         <div class="h-r-nsl">
@@ -22,7 +22,7 @@
             <router-link to="/article" tag="li" active-class="current">
               <a>文章</a>
             </router-link>
-            <router-link :to="emptyPath" tag="li">
+            <router-link to="" tag="li">
               <a @click="warn()">问答</a>
             </router-link>
           </ul>
@@ -112,26 +112,12 @@
                 <a href="#" title="联系我们" target="_blank">联系我们</a>|
                 <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
                 <a href="#" title="资源下载" target="_blank">资源下载</a>|
-                <span>服务热线：000-00000000(福建) 0000-00000000(深圳)</span>
-                <span>Email：chaselq1123@gmail.com</span>
               </section>
               <section class="b-f-link mt10">
                 <span>版权</span>
               </section>
             </section>
           </section>
-          <aside class="fl col-3 tac mt15">
-            <section class="gf-tx">
-              <span>
-                <img src="~/assets/img/wx-icon.png" alt />
-              </span>
-            </section>
-            <section class="gf-tx">
-              <span>
-                <img src="~/assets/img/wb-icon.png" alt />
-              </span>
-            </section>
-          </aside>
           <div class="clear"></div>
         </div>
       </section>
@@ -179,19 +165,16 @@ export default {
   },
 
   methods: {
-    emptyPath() {
-      return ""; // 或者返回一个无效的路径
-    },
     warn() {
       const h = this.$createElement;
       this.$notify({
-        title: "包教会在线教育提示",
+        title: "语言学习在线教育提示",
         message: h("i", { style: "color: teal" }, "该功能敬请期待！"),
       });
     },
 
     showInfo() {
-      var userStr = cookie.get("ucenter");
+      let userStr = cookie.get("ucenter");
       if (userStr) {
         this.loginInfo = JSON.parse(userStr);
       }
@@ -199,10 +182,8 @@ export default {
 
     logout() {
       //清除cookie
-      cookie.set("token", "", { domain: "ibaojiaohui.cn" });
-      cookie.set("ucenter", "", { domain: "ibaojiaohui.cn" });
-      // cookie.set("token", "", { domain: "localhost" });
-      // cookie.set("ucenter", "", { domain: "localhost" });
+      cookie.set("token", "", { domain: "localhost" });
+      cookie.set("ucenter", "", { domain: "localhost" });
       //跳转页面
       window.location.href = "/";
     },

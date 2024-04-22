@@ -5,8 +5,7 @@
       <el-col
         :sm="24"
         :md="50"
-        style="transition: all 0.5s ease-out; margin-bottom: 30px"
-      >
+        style="transition: all 0.5s ease-out; margin-bottom: 30px">
         <div class="detailBox tcommonBox">
           <span class="s-round-date">
             <span

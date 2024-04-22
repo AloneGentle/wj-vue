@@ -71,7 +71,7 @@
                 :value="true"
                 type="checkbox"
               />我已阅读并同意<a href="javascript:" target="_blank"
-                >《包教会在线教育购买协议》</a
+                >《语言学习在线教育购买协议》</a
               >
             </p></label
           >

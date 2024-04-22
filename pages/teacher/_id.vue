@@ -43,11 +43,9 @@
             </section>
           </header>
           <!-- /无数据提示 开始-->
-          <section class="no-data-wrap" v-show="courseList.length == 0">
+          <section class="no-data-wrap" v-show="courseList.length === 0">
             <em class="icon30 no-data-ico">&nbsp;</em>
-            <span class="c-666 fsize14 ml10 vam"
-              >没有相关数据，小编正在努力整理中...</span
-            >
+            <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
           </section>
           <!-- /无数据提示 结束-->
           <!-- 课程列表 开始-->
@@ -62,12 +60,7 @@
                     </div>
                   </section>
                   <h3 @click="isLogin(course.id)" class="hLh30 txtOf mt10">
-                    <a
-                      :title="course.title"
-                      target="_blank"
-                      class="course-title fsize18 c-333"
-                      >{{ course.title }}</a
-                    >
+                    <a :title="course.title" target="_blank" class="course-title fsize18 c-333">{{ course.title }}</a>
                   </h3>
                 </div>
               </li>
@@ -92,7 +85,9 @@ export default {
       };
     });
   },
+  created() {
 
+  },
   methods: {
     //判断用户是否登录
     isLogin(cid) {

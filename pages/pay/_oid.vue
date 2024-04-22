@@ -21,9 +21,9 @@
           <p class="red">请使用微信扫一扫。</p>
           <div class="fl code">
             <!-- <img id="qrious" src="~/assets/img/erweima.png" alt=""> -->
-            <!-- <qriously value="weixin://wxpay/bizpayurl?pr=R7tnDpZ"
+            <!-- <vue-qrious value="weixin://wxpay/bizpayurl?pr=R7tnDpZ"
 :size="338"/> -->
-            <qriously :value="payObj.code_url" :size="338" />
+            <vue-qrious :value="payObj.code_url" :size="338" />
             <div class="saosao">
               <p>请使用微信扫一扫</p>
               <p>扫描二维码支付</p>
@@ -39,6 +39,7 @@
 
 <script>
 import order from "@/api/order";
+import VueQrious from 'vue-qrious'
 
 export default {
   data() {
@@ -46,7 +47,9 @@ export default {
       timer: "", //定时器
     };
   },
-
+  components:{
+    VueQrious,
+  },
   asyncData({ params, error }) {
     return order.createNative(params.oid).then((response) => {
       return {

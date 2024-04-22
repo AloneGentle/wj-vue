@@ -18,13 +18,8 @@
       <div>
         <article class="c-v-pic-wrap" style="height: 357px">
           <section id="videoPlay" class="p-h-video-box">
-            <img
-              height="357px"
-              width="797px"
-              :src="course.cover"
-              :alt="course.title"
-              class="dis c-v-pic"
-            />
+            <img height="357px" width="797px"
+                 :src="course.cover" :alt="course.title" class="dis c-v-pic"/>
           </section>
         </article>
         <aside class="c-attr-wrap">
@@ -34,41 +29,26 @@
             </h2>
             <section class="c-attr-jg">
               <span class="c-fff">价格：</span>
-              <b class="c-yellow" style="font-size: 24px"
-                >￥{{ course.price }}</b
-              >
+              <b class="c-yellow" style="font-size: 24px">￥{{ course.price }}</b>
             </section>
             <section class="c-attr-mt c-attr-undis">
-              <span class="c-fff fsize14"
-                >主讲： {{ course.teacherName }}&nbsp;&nbsp;&nbsp;</span
-              >
+              <span class="c-fff fsize14">主讲： {{ course.teacherName }}&nbsp;&nbsp;&nbsp;</span>
             </section>
             <section class="c-attr-mt of">
               <span class="ml10 vam">
-                <em class="icon18 scIcon" />
+                <em class="icon18 scIcon"/>
                 <a class="c-fff vam" title="收藏" href="#">收藏</a>
               </span>
             </section>
             <section
               v-if="isBuyCourse || Number(course.price) === 0"
-              class="c-attr-mt"
-            >
-              <a
-                href="#"
-                @click.prevent="scrollToSection('section1')"
-                title="立即观看"
-                class="comm-btn c-btn-3"
-                >立即观看</a
-              >
+              class="c-attr-mt">
+              <a href="#" @click.prevent="scrollToSection('section1')"
+                 title="立即观看" class="comm-btn c-btn-3">立即观看</a>
             </section>
             <section v-else class="c-attr-mt">
-              <a
-                @click="createOrder()"
-                href="#"
-                title="立即购买"
-                class="comm-btn c-btn-3"
-                >立即购买</a
-              >
+              <a @click="createOrder()"
+                 href="#" title="立即购买" class="comm-btn c-btn-3">立即购买</a>
             </section>
           </section>
         </aside>
@@ -78,7 +58,7 @@
               <p>&nbsp;</p>
               <aside>
                 <span class="c-fff f-fM">购买数</span>
-                <br />
+                <br/>
                 <h6 class="c-fff f-fM mt10">{{ course.buyCount }}</h6>
               </aside>
             </li>
@@ -86,7 +66,7 @@
               <p>&nbsp;</p>
               <aside>
                 <span class="c-fff f-fM">课时数</span>
-                <br />
+                <br/>
                 <h6 class="c-fff f-fM mt10">{{ course.lessonNum }}</h6>
               </aside>
             </li>
@@ -94,13 +74,13 @@
               <p>&nbsp;</p>
               <aside>
                 <span class="c-fff f-fM">浏览数</span>
-                <br />
+                <br/>
                 <h6 class="c-fff f-fM mt10">{{ course.viewCount }}</h6>
               </aside>
             </li>
           </ol>
         </aside>
-        <div class="clear" />
+        <div class="clear"/>
       </div>
       <!-- /课程基本信息 结束 -->
 
@@ -137,21 +117,18 @@
                       <menu
                         v-if="isBuyCourse || Number(course.price) === 0"
                         id="lh-menu"
-                        class="lh-menu mt10 mr10"
-                      >
+                        class="lh-menu mt10 mr10">
                         <ul>
                           <!-- 课程章节目录 -->
                           <li
                             v-for="chapter in chapterList"
                             :key="chapter.id"
-                            class="lh-menu-stair"
-                          >
+                            class="lh-menu-stair">
                             <a
                               :title="chapter.title"
                               href="javascript: void(0)"
-                              class="current-1"
-                            >
-                              <em class="lh-menu-i-1 icon18 mr10" />{{
+                              class="current-1">
+                              <em class="lh-menu-i-1 icon18 mr10"/>{{
                                 chapter.title
                               }}
                             </a>
@@ -159,16 +136,9 @@
                               <li
                                 v-for="video in chapter.children"
                                 :key="video.id"
-                                class="lh-menu-second ml30"
-                              >
-                                <a
-                                  :href="'/player/' + video.videoSourceId"
-                                  title
-                                >
-                                  <span
-                                    v-show="Number(video.isFree) === 1"
-                                    class="fr"
-                                  >
+                                class="lh-menu-second ml30">
+                                <a :href="'/player/' + video.videoSourceId" title>
+                                  <span v-show="Number(video.isFree) === 1" class="fr">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
@@ -182,49 +152,29 @@
                       <menu v-else id="lh-menu" class="lh-menu mt10 mr10">
                         <ul>
                           <!-- 课程章节目录 -->
-                          <li
-                            v-for="chapter in chapterList"
-                            :key="chapter.id"
-                            class="lh-menu-stair"
-                          >
-                            <a
-                              :title="chapter.title"
-                              href="javascript: void(0)"
-                              class="current-1"
-                            >
-                              <em class="lh-menu-i-1 icon18 mr10" />{{
+                          <li v-for="chapter in chapterList" :key="chapter.id" class="lh-menu-stair">
+                            <a :title="chapter.title"
+                               href="javascript: void(0)"
+                               class="current-1">
+                              <em class="lh-menu-i-1 icon18 mr10"/>{{
                                 chapter.title
                               }}
                             </a>
                             <ol class="lh-menu-ol" style="display: block">
-                              <li
-                                v-for="video in chapter.children"
-                                :key="video.id"
-                                class="lh-menu-second ml30"
-                              >
-                                <a
-                                  v-if="Number(video.isFree) === 1"
-                                  :href="'/player/' + video.videoSourceId"
-                                  title
-                                >
-                                  <span
-                                    v-show="Number(video.isFree) === 1"
-                                    class="fr"
-                                  >
+                              <li v-for="video in chapter.children"
+                                  :key="video.id" class="lh-menu-second ml30">
+                                <a v-if="Number(video.isFree) === 1"
+                                   :href="'/player/' + video.videoSourceId" title>
+                                  <span v-show="Number(video.isFree) === 1" class="fr">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
-                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
-                                  >{{ video.title }}
+                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em>{{ video.title }}
                                 </a>
                                 <a v-else href="#" @click="goBuy()">
-                                  <span
-                                    v-show="Number(video.isFree) === 1"
-                                    class="fr"
-                                  >
+                                  <span v-show="Number(video.isFree) === 1" class="fr">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
-                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
-                                  >{{ video.title }}
+                                  <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em>{{ video.title }}
                                 </a>
                               </li>
                             </ol>
@@ -251,16 +201,12 @@
                   <li>
                     <div class="u-face">
                       <a :href="'/teacher/' + course.teacherId" target="_blank">
-                        <img :src="course.avatar" width="50" height="50" alt />
+                        <img :src="course.avatar" width="50" height="50" alt/>
                       </a>
                     </div>
                     <section class="hLh30 txtOf">
-                      <a
-                        :href="'/teacher/' + course.teacherId"
-                        class="c-333 fsize16 fl"
-                        target="_blank"
-                        >{{ course.teacherName }}</a
-                      >
+                      <a :href="'/teacher/' + course.teacherId"
+                        class="c-333 fsize16 fl" target="_blank">{{ course.teacherName }}</a>
                     </section>
                     <section class="hLh20 txtOf">
                       <span class="c-999">{{ course.intro }}</span>
@@ -272,7 +218,7 @@
             <!-- /主讲讲师 结束 -->
           </div>
         </aside>
-        <div class="clear" />
+        <div class="clear"/>
       </div>
       <div class="mt50 commentHtml">
         <div>
@@ -283,36 +229,27 @@
             <ul>
               <li class="unBr">
                 <aside class="noter-pic">
-                  <img
-                    width="50"
-                    height="50"
-                    class="picImg"
-                    src="~/assets/img/avatar-boy.gif"
-                  />
+                  <img width="50" height="50" class="picImg"
+                    src="~/assets/img/avatar-boy.gif"/>
                 </aside>
                 <div class="of">
                   <section class="n-reply-wrap">
                     <fieldset>
-                      <textarea
-                        name=""
-                        v-model="comment.content"
+                      <textarea name="" v-model="comment.content"
                         placeholder="输入您要评论的文字"
-                        id="commentContent"
-                      ></textarea>
+                        id="commentContent"></textarea>
                     </fieldset>
                     <p class="of mt5 tar pl10 pr10">
-                      <span class="fl"
-                        ><tt
-                          class="c-red commentContentmeg"
-                          style="display: none"
-                        ></tt
+                      <span class="fl"><tt
+                        class="c-red commentContentmeg"
+                        style="display: none"
+                      ></tt
                       ></span>
                       <input
                         type="button"
                         @click="addComment(course.price)"
                         value="发表"
-                        class="lh-reply-btn"
-                      />
+                        class="lh-reply-btn"/>
                     </p>
                   </section>
                 </div>
@@ -333,21 +270,16 @@
                   </aside>
                   <div class="of">
                     <span class="fl">
-                      <font class="fsize12 c-blue">
-                        {{ comment.nickname }}</font
-                      >
-                      <font class="fsize12 c-999 ml5">评论：</font></span
-                    >
+                      <font class="fsize12 c-blue">{{ comment.nickname }}</font>
+                      <font class="fsize12 c-999 ml5">评论：</font></span>
                   </div>
                   <div class="noter-txt mt5">
                     <p>{{ comment.content }}</p>
                   </div>
                   <div class="of mt5">
-                    <span class="fr"
-                      ><font class="fsize12 c-999 ml5">{{
-                        comment.gmtCreate
-                      }}</font></span
-                    >
+                    <span class="fr">
+                      <font class="fsize12 c-999 ml5">{{comment.gmtCreate }}</font>
+                    </span>
                   </div>
                 </li>
               </ul>
@@ -357,47 +289,32 @@
           <!-- 公共分页 开始 -->
           <div class="paging" v-show="data.total > 0">
             <!-- undisable这个class是否存在，取决于数据属性hasPrevious -->
-            <a
-              :class="{ undisable: !data.hasPrevious }"
+            <a :class="{ undisable: !data.hasPrevious }"
               href="#"
               title="首页"
-              @click.prevent="gotoPage(1)"
-              >首页</a
-            >
-            <a
-              :class="{ undisable: !data.hasPrevious }"
-              href="#"
-              title="前一页"
-              @click.prevent="gotoPage(data.current - 1)"
-              >&lt;</a
-            >
-            <a
-              v-for="page in data.pages"
-              :key="page"
+              @click.prevent="gotoPage(1)">首页</a>
+            <a :class="{ undisable: !data.hasPrevious }"
+              href="#" title="前一页"
+              @click.prevent="gotoPage(data.current - 1)">&lt;</a>
+            <a v-for="page in data.pages" :key="page"
               :class="{
                 current: data.current == page,
                 undisable: data.current == page,
               }"
-              :title="'第' + page + '页'"
-              href="#"
-              @click.prevent="gotoPage(page)"
-              >{{ page }}</a
-            >
-            <a
-              :class="{ undisable: !data.hasNext }"
+              :title="'第' + page + '页'" href="#"
+              @click.prevent="gotoPage(page)">{{ page }}
+            </a>
+            <a :class="{ undisable: !data.hasNext }"
               href="#"
               title="后一页"
               @click.prevent="gotoPage(data.current + 1)"
-              >&gt;</a
-            >
-            <a
-              :class="{ undisable: !data.hasNext }"
+            >&gt;</a>
+            <a :class="{ undisable: !data.hasNext }"
               href="#"
               title="末页"
-              @click.prevent="gotoPage(data.pages)"
-              >末页</a
-            >
-            <div class="clear" />
+              @click.prevent="gotoPage(data.pages)">末页
+            </a>
+            <div class="clear"/>
           </div>
           <!-- 公共分页 结束 -->
         </div>
@@ -413,7 +330,7 @@ import order from "@/api/order";
 
 export default {
   //与页面请求同时异步调用
-  asyncData({ params, error }) {
+  asyncData({params, error}) {
     return {
       courseId: params.id,
     };
@@ -457,7 +374,7 @@ export default {
       const section = document.getElementById(sectionId);
       if (section) {
         const top = section.offsetTop;
-        window.scrollTo({ top, behavior: "smooth" });
+        window.scrollTo({top, behavior: "smooth"});
       }
     },
 
@@ -473,7 +390,7 @@ export default {
       order.saveOrderByCourseId(this.course.id).then((Response) => {
         if (Response.data.success) {
           //订单创建成功，跳转到订单页面
-          this.$router.push({ path: "/order/" + Response.data.data.orderNo });
+          this.$router.push({path: "/order/" + Response.data.data.orderNo});
         }
       });
     },

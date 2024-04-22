@@ -250,7 +250,7 @@ export default {
 
     //分页查询
     gotoPage(page) {
-      if ((page >= 1 && page <= this.data.pages) || this.data.pages == 0) {
+      if ((page >= 1 && page <= this.data.pages) || this.data.pages === 0) {
         course.pageCourseFront(page, 8, this.searchObj).then((Response) => {
           this.data = Response.data.data;
         });

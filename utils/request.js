@@ -1,24 +1,24 @@
 import axios from 'axios'
-import { MessageBox, Message } from 'element-ui'
 import cookie from 'js-cookie'
 
 // 创建axios实例
 const service = axios.create({
-    baseURL: 'http://localhost:8443', // api的base_url
-    timeout: 20000 // 请求超时时间
+  baseURL: 'http://localhost:8443', // api的base_url
+  timeout: 20000
 })
 
 service.interceptors.request.use(
-    config => {
-        //debugger
-        if (cookie.get('token')) {
-            config.headers['token'] = cookie.get('token');
-        }
-        return config
-    },
-    err => {
-        return Promise.reject(err);
-    })
+  config => {
+    //debugger
+    if (cookie.get('token')) {
+      config.headers['token'] = cookie.get('token');
+    }
+    console.log("cookie.get('token'):url=", config.url, cookie.get('token'))
+    return config
+  },
+  err => {
+    return Promise.reject(err);
+  })
 
 // http response 拦截器
 // service.interceptors.response.use(
