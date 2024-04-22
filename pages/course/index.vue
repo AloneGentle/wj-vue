@@ -19,7 +19,7 @@
                     title="全部"
                     href="javascript:void(0);"
                     @click="searchOne('')"
-                    >全 部</a
+                  >全 部</a
                   >
                 </li>
                 <li
@@ -31,7 +31,7 @@
                     :title="item.title"
                     href="javascript:void(0);"
                     @click="searchOne(item.id, index)"
-                    >{{ item.title }}</a
+                  >{{ item.title }}</a
                   >
                 </li>
               </ul>
@@ -39,7 +39,7 @@
           </dl>
           <dl>
             <dt>
-              <span class="c-999 fsize14" />
+              <span class="c-999 fsize14"/>
             </dt>
             <dd class="c-s-dl-li">
               <ul class="clearfix">
@@ -52,13 +52,13 @@
                     :title="item.title"
                     href="javascript:void(0);"
                     @click="searchTwo(item.id, index)"
-                    >{{ item.title }}</a
+                  >{{ item.title }}</a
                   >
                 </li>
               </ul>
             </dd>
           </dl>
-          <div class="clear" />
+          <div class="clear"/>
         </section>
         <div class="js-wrap">
           <section class="fr">
@@ -75,7 +75,7 @@
                   title="销量"
                   href="javascript:void(0);"
                   @click="searchBuyCount()"
-                  >销量
+                >销量
                   <span :class="{ hide: buyCountSort == '' }">↓</span>
                 </a>
               </li>
@@ -84,17 +84,17 @@
                   title="最新"
                   href="javascript:void(0);"
                   @click="searchGmtCreate()"
-                  >最新
-                  <span :class="{ hide: gmtCreateSort == '' }">↓</span>
+                >最新
+                  <span :class="{ hide: gmtCreateSort === '' }">↓</span>
                 </a>
               </li>
-              <li :class="{ 'current bg-orange': priceSort != '' }">
+              <li :class="{ 'current bg-orange': priceSort !== '' }">
                 <a
                   title="价格"
                   href="javascript:void(0);"
                   @click="searchPrice()"
-                  >价格&nbsp;
-                  <span :class="{ hide: priceSort == '' }">↓</span>
+                >价格&nbsp;
+                  <span :class="{ hide: priceSort === '' }">↓</span>
                 </a>
               </li>
             </ol>
@@ -105,7 +105,7 @@
           <section class="no-data-wrap" v-show="data.total === 0">
             <em class="icon30 no-data-ico">&nbsp;</em>
             <span class="c-666 fsize14 ml10 vam"
-              >没有相关数据，小编正在努力整理中...</span
+            >没有相关数据，小编正在努力整理中...</span
             >
           </section>
           <!-- /无数据提示 结束-->
@@ -115,15 +115,15 @@
               <li v-for="item in data.items" :key="item.id">
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img :src="item.cover" class="img-responsive" alt />
+                    <img :src="item.cover" class="img-responsive" alt/>
                     <div @click="isLogin(item.id)" class="cc-mask">
                       <a title="开始学习" class="comm-btn c-btn-1">开始学习</a>
                     </div>
                   </section>
                   <h3 @click="isLogin(item.id)" class="hLh30 txtOf mt10">
                     <a :title="item.title" class="course-title fsize18 c-333">{{
-                      item.title
-                    }}</a>
+                        item.title
+                      }}</a>
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span
@@ -141,7 +141,7 @@
                 </div>
               </li>
             </ul>
-            <div class="clear" />
+            <div class="clear"/>
           </article>
           <!-- /数据列表 结束-->
         </div>
@@ -149,47 +149,21 @@
         <div>
           <div class="paging">
             <!-- undisable这个class是否存在，取决于数据属性hasPrevious -->
-            <a
-              :class="{ undisable: !data.hasPrevious }"
-              href="#"
-              title="首页"
-              @click.prevent="gotoPage(1)"
-              >首页</a
-            >
-            <a
-              :class="{ undisable: !data.hasPrevious }"
-              href="#"
-              title="前一页"
-              @click.prevent="gotoPage(data.current - 1)"
-              >&lt;</a
-            >
-            <a
-              v-for="page in data.pages"
-              :key="page"
-              :class="{
+            <a :class="{ undisable: !data.hasPrevious }"
+               href="#" title="首页" @click.prevent="gotoPage(1)">首页</a>
+            <a :class="{ undisable: !data.hasPrevious }" href="#" title="前一页"
+               @click.prevent="gotoPage(data.current - 1)">&lt;</a>
+            <a v-for="page in data.pages" :key="page"
+               :class="{
                 current: data.current == page,
                 undisable: data.current == page,
-              }"
-              :title="'第' + page + '页'"
-              href="#"
-              @click.prevent="gotoPage(page)"
-              >{{ page }}</a
-            >
-            <a
-              :class="{ undisable: !data.hasNext }"
-              href="#"
-              title="后一页"
-              @click.prevent="gotoPage(data.current + 1)"
-              >&gt;</a
-            >
-            <a
-              :class="{ undisable: !data.hasNext }"
-              href="#"
-              title="末页"
-              @click.prevent="gotoPage(data.pages)"
-              >末页</a
-            >
-            <div class="clear" />
+              }" :title="'第' + page + '页'" href="#" @click.prevent="gotoPage(page)">{{ page }}</a>
+            <a :class="{ undisable: !data.hasNext }"
+               href="#" title="后一页"
+               @click.prevent="gotoPage(data.current + 1)">&gt;</a>
+            <a :class="{ undisable: !data.hasNext }"
+               href="#" title="末页" @click.prevent="gotoPage(data.pages)">末页</a>
+            <div class="clear"/>
           </div>
         </div>
         <!-- 公共分页 结束 -->
@@ -198,8 +172,9 @@
     <!-- /课程列表 结束 -->
   </div>
 </template>
- <script>
+<script>
 import course from "@/api/course";
+
 export default {
   data() {
     return {
@@ -229,9 +204,9 @@ export default {
     isLogin(cid) {
       course.isLogin().then((Response) => {
         if (Response.data.success) {
-          this.$router.push({ path: "/course/" + cid });
+          this.$router.push({path: "/course/" + cid});
         } else {
-          this.$router.push({ path: "/login" });
+          this.$router.push({path: "/login"});
           this.$message({
             type: "success",
             message: "请先登录",
@@ -334,9 +309,11 @@ export default {
 .active {
   background: #bdbdbd;
 }
+
 .hide {
   display: none;
 }
+
 .show {
   display: block;
 }

@@ -81,15 +81,19 @@ import teacher from "@/api/teacher";
 export default {
   //异步调用，只调用一次
   //params相当于this.$route.params.id 等价 params.id
-  asyncData({params}) {
-    return teacher.pageTeacherFront(1, 8).then((Response) => {
+  asyncData({req}) {
+    let cookie;
+    if (req && req.headers) {
+      cookie = req.headers.cookie;
+    }
+    return teacher.pageTeacherFront(1, 8, cookie).then((Response) => {
       return {data: Response.data.data};
     });
   },
   methods: {
     gotoPage(page) {
       if (page >= 1 && page <= this.data.pages) {
-        teacher.pageTeacherFront(page, 8).then((Response) => {
+        teacher.pageTeacherFront(page, 8, null).then((Response) => {
           this.data = Response.data.data;
         });
       }

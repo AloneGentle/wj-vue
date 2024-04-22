@@ -13,7 +13,6 @@ service.interceptors.request.use(
     if (cookie.get('token')) {
       config.headers['token'] = cookie.get('token');
     }
-    console.log("cookie.get('token'):url=", config.url, cookie.get('token'))
     return config
   },
   err => {

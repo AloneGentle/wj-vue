@@ -77,16 +77,13 @@
 import teacher from "@/api/teacher";
 import course from "@/api/course";
 export default {
-  asyncData({ params, error }) {
-    return teacher.getInfoByTeacherId(params.id).then((Response) => {
+  asyncData({ req, params}) {
+    return teacher.getInfoByTeacherId(params.id, req.headers.cookie).then((Response) => {
       return {
         teacher: Response.data.data.eduTeacher,
         courseList: Response.data.data.courseList,
       };
     });
-  },
-  created() {
-
   },
   methods: {
     //判断用户是否登录
