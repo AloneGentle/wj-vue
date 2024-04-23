@@ -12,13 +12,11 @@
         <section class="fl t-infor-box c-desc-content">
           <div class="mt20 ml20">
             <section class="t-infor-pic">
-              <img height="240px" :src="teacher.avatar" :alt="teacher.name" />
+              <img height="240px" :src="teacher.avatar" :alt="teacher.name"/>
             </section>
             <h3 class="hLh30">
-              <span class="fsize24 c-333"
-                >{{ teacher.name }}
-                &nbsp;
-                {{ teacher.level === 1 ? "高级讲师" : "首席讲师" }}
+              <span class="fsize24 c-333">{{ teacher.name }}
+                &nbsp;{{ teacher.level === 1 ? "高级讲师" : "首席讲师" }}
               </span>
             </h3>
             <section class="mt10">
@@ -27,7 +25,7 @@
             <section class="t-infor-txt">
               <p class="mt20">{{ teacher.career }}</p>
             </section>
-            <div class="clear" />
+            <div class="clear"/>
           </div>
         </section>
         <div class="clear"></div>
@@ -54,7 +52,7 @@
               <li v-for="course in courseList" :key="course.id">
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img :src="course.cover" class="img-responsive" />
+                    <img :src="course.cover" class="img-responsive"/>
                     <div @click="isLogin(course.id)" class="cc-mask">
                       <a title="开始学习" class="comm-btn c-btn-1">开始学习</a>
                     </div>
@@ -65,7 +63,7 @@
                 </div>
               </li>
             </ul>
-            <div class="clear" />
+            <div class="clear"/>
           </article>
           <!-- /课程列表 结束-->
         </div>
@@ -73,16 +71,27 @@
     </section>
   </div>
 </template>
- <script>
+<script>
+
 import teacher from "@/api/teacher";
 import course from "@/api/course";
+
 export default {
-  asyncData({ req, params}) {
-    return teacher.getInfoByTeacherId(params.id, req.headers.cookie).then((Response) => {
-      return {
-        teacher: Response.data.data.eduTeacher,
-        courseList: Response.data.data.courseList,
-      };
+  asyncData({params}) {
+    return {
+      teacherId: params.id,
+    };
+  },
+  data() {
+    return {
+      teacher: {},
+      courseList: []
+    }
+  },
+  created() {
+    teacher.getInfoByTeacherId(this.teacherId).then((Response) => {
+      this.teacher = Response.data.data.eduTeacher
+      this.courseList = Response.data.data.courseList
     });
   },
   methods: {
@@ -90,9 +99,9 @@ export default {
     isLogin(cid) {
       course.isLogin().then((Response) => {
         if (Response.data.success) {
-          this.$router.push({ path: "/course/" + cid });
+          this.$router.push({path: "/course/" + cid});
         } else {
-          this.$router.push({ path: "/login" });
+          this.$router.push({path: "/login"});
           this.$message({
             type: "success",
             message: "请先登录",

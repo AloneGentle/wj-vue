@@ -7,23 +7,16 @@
 
     <div class="sign-up-container">
       <el-form ref="userForm" :model="params">
-        <el-form-item
-          class="input-prepend restyle"
-          prop="nickname"
+        <el-form-item class="input-prepend restyle" prop="nickname"
           :rules="[
             {
               required: true,
               message: '请输入你的昵称',
               trigger: 'blur',
             },
-          ]"
-        >
+          ]">
           <div>
-            <el-input
-              type="text"
-              placeholder="你的昵称"
-              v-model="params.nickname"
-            />
+            <el-input type="text" placeholder="你的昵称" v-model="params.nickname"/>
             <i class="iconfont icon-user" />
           </div>
         </el-form-item>
@@ -34,100 +27,31 @@
           :rules="[
             { required: true, message: '请输入手机号码', trigger: 'blur' },
             { validator: checkPhone, trigger: 'blur' },
-          ]"
-        >
+          ]">
           <div>
-            <el-input
-              type="text"
-              placeholder="手机号"
-              v-model="params.mobile"
-            />
+            <el-input type="text" placeholder="手机号" v-model="params.mobile"/>
             <i class="iconfont icon-phone" />
           </div>
         </el-form-item>
-
-<!--        <el-form-item-->
-<!--          class="input-prepend restyle no-radius"-->
-<!--          prop="code"-->
-<!--          :rules="[-->
-<!--            { required: true, message: '请输入验证码', trigger: 'blur' },-->
-<!--          ]"-->
-<!--        >-->
-<!--          <div-->
-<!--            style="width: 100%; display: block; float: left; position: relative"-->
-<!--          >-->
-<!--            <el-input type="text" placeholder="验证码" v-model="params.code" />-->
-<!--            <i class="iconfont icon-phone" />-->
-<!--          </div>-->
-<!--          <div-->
-<!--            class="btn"-->
-<!--            style="position: absolute; right: 0; top: 6px; width: 40%"-->
-<!--          >-->
-<!--            <a-->
-<!--              href="javascript:"-->
-<!--              type="button"-->
-<!--              @click="getCodeFun()"-->
-<!--              :value="codeTest"-->
-<!--              style="border: none; background-color: none"-->
-<!--              >{{ codeTest }}</a-->
-<!--            >-->
-<!--          </div>-->
-<!--        </el-form-item>-->
-
         <el-form-item
           class="input-prepend"
           prop="password"
-          :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]"
-        >
+          :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]">
           <div>
-            <el-input
-              type="password"
-              placeholder="设置密码"
-              v-model="params.password"
-            />
+            <el-input type="password" placeholder="设置密码" v-model="params.password"/>
             <i class="iconfont icon-password" />
           </div>
         </el-form-item>
 
         <div class="btn">
-          <input
-            type="button"
-            class="sign-up-button"
-            value="注册"
-            @click="submitRegister()"
-          />
+          <input type="button" class="sign-up-button" value="注册" @click="submitRegister()"/>
         </div>
         <p class="sign-up-msg">
-          点击 “注册” 即表示您同意并愿意遵守简书
-          <br />
-          <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce"
-            >用户协 议</a
-          >
-          和
-          <a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a>
-          。
+          点击 “注册” 即表示您同意并愿意遵守简书<br />
+          <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a>
+          和<a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a>。
         </p>
       </el-form>
-<!--      &lt;!&ndash; 更多注册方式 &ndash;&gt;-->
-<!--      <div class="more-sign">-->
-<!--        <h6>社交帐号直接注册</h6>-->
-<!--        <ul>-->
-<!--          <li>-->
-<!--            <a-->
-<!--              id="weixin"-->
-<!--              class="weixin"-->
-<!--              target="_blank"-->
-<!--              href="http://localhost:8160/api/ucenter/wx/wxLogin"-->
-<!--              ><i class="iconfont icon-weixin"-->
-<!--            /></a>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a id="qq" class="qq" target="_blank" href="#"-->
-<!--              ><i class="iconfont icon-qq"-->
-<!--            /></a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
     </div>
   </div>
 </template>
@@ -163,29 +87,6 @@ export default {
         //跳转到登录页面
         this.$router.push({ path: "/login" });
       });
-    },
-
-    //获取验证码
-    getCodeFun() {
-      register.send(this.params.mobile).then((Response) => {
-        this.sending = false;
-        this.timeDown();
-      });
-    },
-
-    //倒计时
-    timeDown() {
-      let result = setInterval(() => {
-        --this.second;
-        this.codeTest = this.second;
-        if (this.second < 1) {
-          clearInterval(result);
-          this.sending = true;
-          //this.disabled = false;
-          this.second = 60;
-          this.codeTest = "获取验证码";
-        }
-      }, 1000);
     },
 
     checkPhone(rule, value, callback) {

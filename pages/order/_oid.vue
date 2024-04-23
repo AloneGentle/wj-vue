@@ -120,11 +120,11 @@ export default {
 
   methods: {
     toPay() {
-      if (this.agress == false) {
+      if (!this.agress) {
         //未勾选同意协议提示
         this.$message({
           type: "error",
-          message: "请先阅读并同意《谷粒学院购买协议》",
+          message: "请先阅读并同意《购买协议》",
         });
       } else {
         this.$router.push({ path: "/pay/" + this.order.orderNo });
