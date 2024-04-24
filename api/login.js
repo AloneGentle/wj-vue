@@ -3,7 +3,7 @@ export default {
     //1.用户登录
     loginUser(ucenterMember) {
         return request({
-            url: `/eduservice/member/login?username=${ucenterMember.mobile}&password=${ucenterMember.password}`,
+            url: `/eduservice/member/login?username=${ucenterMember.username}&password=${ucenterMember.password}`,
             method: 'post',
         })
     },

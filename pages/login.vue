@@ -8,13 +8,13 @@
 
     <div class="sign-up-container">
       <el-form ref="userForm" :model="user">
-        <el-form-item class="input-prepend restyle" prop="mobile" :rules="[{
+        <el-form-item class="input-prepend restyle" prop="username" :rules="[{
               required: true,
-              message: '请输入手机号码',
+              message: '请输入用户名',
               trigger: 'blur',
             }]">
           <div>
-            <el-input type="text" placeholder="手机号" v-model="user.mobile"/>
+            <el-input type="text" placeholder="用户名" v-model="user.username"/>
             <i class="iconfont icon-phone"/>
           </div>
         </el-form-item>
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       user: {
-        mobile: "",
+        username: "",
         password: "",
       },
       loginInfo: {},

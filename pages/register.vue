@@ -20,19 +20,6 @@
             <i class="iconfont icon-user" />
           </div>
         </el-form-item>
-
-        <el-form-item
-          class="input-prepend restyle no-radius"
-          prop="mobile"
-          :rules="[
-            { required: true, message: '请输入手机号码', trigger: 'blur' },
-            { validator: checkPhone, trigger: 'blur' },
-          ]">
-          <div>
-            <el-input type="text" placeholder="手机号" v-model="params.mobile"/>
-            <i class="iconfont icon-phone" />
-          </div>
-        </el-form-item>
         <el-form-item
           class="input-prepend"
           prop="password"
@@ -66,19 +53,15 @@ export default {
   data() {
     return {
       params: {
-        mobile: "",
         code: "",
         nickname: "",
         password: "",
       },
-      sending: true, //是否发送验证码
-      second: 60, //倒计时间
-      codeTest: "获取验证码",
     };
   },
   methods: {
     submitRegister() {
-      register.registerUser(this.params).then((Response) => {
+      register.registerUser(this.params).then(() => {
         //提示注册成功
         this.$message({
           type: "success",
@@ -87,14 +70,6 @@ export default {
         //跳转到登录页面
         this.$router.push({ path: "/login" });
       });
-    },
-
-    checkPhone(rule, value, callback) {
-      //debugger
-      if (!/^1[2345789]\d{9}$/.test(value)) {
-        return callback(new Error("手机号码格式不正确"));
-      }
-      return callback();
     },
   },
 };

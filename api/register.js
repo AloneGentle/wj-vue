@@ -8,12 +8,4 @@ export default {
             data: RegisterVo
         })
     },
-
-    //根据手机号码发送短信
-    send(phone) {
-        return request({
-            url: `/edusms/sms/send/${phone}`,
-            method: 'get'
-        })
-    },
 }
