@@ -3,7 +3,7 @@ export default {
     //2.用户注册
     registerUser(RegisterVo) {
         return request({
-            url: `/educenter/member/register`,
+            url: `/member/register`,
             method: 'post',
             data: RegisterVo
         })
